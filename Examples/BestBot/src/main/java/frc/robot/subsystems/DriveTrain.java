@@ -19,10 +19,10 @@ public class DriveTrain extends Subsystem {
   // here. Call these from Commands.
 
   //Motors
-  public SpeedController LeftBack = new WPI_TalonSRX(RobotMap.LeftBack);
-  public SpeedController LeftFront = new WPI_TalonSRX(RobotMap.LeftFront);
-  public SpeedController RightBack = new WPI_TalonSRX(RobotMap.RightBack);
-  public SpeedController RightFront = new WPI_TalonSRX(RobotMap.RightFront);
+  public WPI_TalonSRX LeftBack = new WPI_TalonSRX(RobotMap.LeftBack);
+  public WPI_TalonSRX LeftFront = new WPI_TalonSRX(RobotMap.LeftFront);
+  public WPI_TalonSRX RightBack = new WPI_TalonSRX(RobotMap.RightBack);
+  public WPI_TalonSRX RightFront = new WPI_TalonSRX(RobotMap.RightFront);
   //Grouping
   public SpeedControllerGroup m_Left = new SpeedControllerGroup(LeftFront, LeftBack);
   public SpeedControllerGroup m_Right = new SpeedControllerGroup(RightFront, RightBack);
