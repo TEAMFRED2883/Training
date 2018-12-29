@@ -14,7 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Elevator;
+import edu.wpi.first.wpilibj.Compressor;
+import frc.robot.commands.SimpleAuto;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,13 +27,14 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  // public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain m_driveTrain = new DriveTrain();
+  public static Compressor m_compressor = new Compressor();
+  public static Elevator m_elevator = new Elevator();
+  public static Claw m_claw = new Claw();
   public static OI m_oi;
-
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -39,8 +43,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_chooser.addDefault("Default Auto", new ExampleCommand());
+    m_chooser.addObject("Timed Auto", new SimpleAuto());
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    m_compressor.setClosedLoopControl(true);
   }
 
   /**

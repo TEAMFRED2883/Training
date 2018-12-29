@@ -28,6 +28,9 @@ public class DriveTrain extends Subsystem {
   public SpeedControllerGroup m_Right = new SpeedControllerGroup(RightFront, RightBack);
   //DriveTrain
   public DifferentialDrive m_dDrive;
+  //PigeonStuff
+
+  //Encoders
 
   public DriveTrain(){
     //SmartDashboard Stuff
@@ -49,8 +52,13 @@ public class DriveTrain extends Subsystem {
      setDefaultCommand(new ExampleCommand());
   }
 
-  public void DriveWithXbox(XboxController box)
+  public void drive(XboxController box)
   {
-      m_dDrive.tankDrive(box.getX(), box.getY());
+    m_dDrive.arcadeDrive(box.getRawAxis(1), -box.getRawAxis(0));
+  }
+
+  public void drive(double speed, double rotation)
+  {
+    m_dDrive.arcadeDrive(rotation, speed);
   }
 }

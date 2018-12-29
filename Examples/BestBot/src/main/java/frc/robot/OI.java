@@ -9,6 +9,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.OpenClaw;
+import frc.robot.commands.CloseClaw;
+import frc.robot.commands.ToggleClaw;
+import frc.robot.commands.EjectFromClaw;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,7 +25,11 @@ public class OI {
   // You create one by telling it which joystick it's on and which button
   // number it is.
    XboxController stick = new XboxController(RobotMap.XboxPort);
-   public Button button = new JoystickButton(stick, RobotMap.A_Button);
+   public Button Abutton = new JoystickButton(stick, RobotMap.A_Button);
+   public Button Bbutton = new JoystickButton(stick, RobotMap.B_Button);
+   public Button Xbutton = new JoystickButton(stick, RobotMap.X_Button);
+   public Button Ybutton = new JoystickButton(stick, RobotMap.Y_Button);
+   public Button RightBumper = new JoystickButton(stick, RobotMap.RightBumper);
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
@@ -34,6 +42,20 @@ public OI(){
   // Start the command when the button is pressed and let it run the command
   // until it is finished as determined by it's isFinished method.
   //button.whenPressed(new ExampleCommand());
+
+  //Configure Claw
+  Abutton.whileHeld(new OpenClaw());
+  Bbutton.whileHeld(new EjectFromClaw());
+  RightBumper.whenPressed(new ToggleClaw());
+  Abutton.whenReleased(new CloseClaw());
+  Bbutton.whenReleased(new CloseClaw());
+
+
+  //Configure Elevator
+  /*Xbutton.whileHeld(new ElevatorUp());
+  Xbutton.whenReleased(new ElevatorStop());
+  Ybutton.whileHeld(new ElevatorDown());
+  Ybutton.whenReleased(new ElevatorStop());*/
 
   // Run the command while the button is being held down and interrupt it once
   // the button is released.

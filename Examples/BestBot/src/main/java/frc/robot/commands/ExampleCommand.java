@@ -28,7 +28,7 @@ public class ExampleCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.DriveWithXbox(Robot.m_oi.GetConch());
+    Robot.m_driveTrain.drive(Robot.m_oi.GetConch());
   }
 
   // Make this return true when this Command no longer needs to run execute()
