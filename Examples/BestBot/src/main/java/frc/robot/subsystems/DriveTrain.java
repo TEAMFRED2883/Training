@@ -8,9 +8,11 @@ import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.SpeedController;
 //Commands Used
 import frc.robot.commands.ExampleCommand;
+//CTRE stuff
+import com.ctre.phoenix.sensors.PigeonIMU;
+import edu.wpi.first.wpilibj.Encoder;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
@@ -29,10 +31,12 @@ public class DriveTrain extends Subsystem {
   //DriveTrain
   public DifferentialDrive m_dDrive;
   //PigeonStuff
-
+  public PigeonIMU pigeonGyro = new PigeonIMU(RobotMap.Pigeon);
+  int timeout = 50;
   //Encoders
 
   public DriveTrain(){
+    //Gyro Timeout
     //SmartDashboard Stuff
     addChild("FrontLeft", (WPI_TalonSRX) LeftFront);
     addChild("FrontRight", (WPI_TalonSRX) RightFront);
@@ -44,6 +48,7 @@ public class DriveTrain extends Subsystem {
     m_dDrive.setSafetyEnabled(true); //Always be safe!
     m_dDrive.setExpiration(0.1);//updatetimer
     m_dDrive.setMaxOutput(1.0);//setting max power
+    pigeonGyro.setYaw(0, timeout);
   }
 
   @Override 
@@ -60,5 +65,15 @@ public class DriveTrain extends Subsystem {
   public void drive(double speed, double rotation)
   {
     m_dDrive.arcadeDrive(rotation, speed);
+  }
+
+  public void ResetPig()
+  {
+    pigeonGyro.setYaw(0, timeout);
+  }
+  public double GetRawAngle(){
+    double[] temp = new double[3];
+    pigeonGyro.getYawPitchRoll(temp);
+    return temp[0];
   }
 }

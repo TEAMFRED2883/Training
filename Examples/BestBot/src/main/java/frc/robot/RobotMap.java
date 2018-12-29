@@ -44,6 +44,8 @@ public class RobotMap {
   public static int Out = 1;
   public static int Up = 2;
   public static int Down = 3;
+  //Pigeon and Encoders
+  public static int Pigeon = 10;
 
 
   // For example to map the left and right motors, you could define the
