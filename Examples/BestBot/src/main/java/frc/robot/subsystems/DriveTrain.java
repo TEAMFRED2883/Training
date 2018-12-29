@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
   public DifferentialDrive m_dDrive;
   //PigeonStuff
   public PigeonIMU pigeonGyro = new PigeonIMU(RobotMap.Pigeon);
-  int timeout = 50;
+  int timeout = 100;
   //Encoders
 
   public DriveTrain(){
