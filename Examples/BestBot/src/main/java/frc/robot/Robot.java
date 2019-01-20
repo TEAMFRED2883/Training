@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -26,7 +26,7 @@ import frc.robot.commands.SimpleAuto;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
+public class Robot extends IterativeRobot {
   // public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Compressor m_compressor = new Compressor();

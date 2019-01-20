@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
 
   public void drive(XboxController box)
   {
-    m_dDrive.arcadeDrive(box.getRawAxis(1), -box.getRawAxis(0));
+    m_dDrive.arcadeDrive(box.getRawAxis(0), -box.getRawAxis(1));
   }
 
   public void drive(double speed, double rotation)
